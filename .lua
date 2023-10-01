@@ -3,6 +3,7 @@ local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = false, ConfigFolder = "TurtleFi"})
 
 local workspace = game:GetService("Workspace")
+local Player = game.Players.LocalPlayer
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -38,7 +39,7 @@ PremiumOnly = false
 })
 
 local T4 = Window:MakeTab({
-Name = "Point",
+Name = "Upgrade",
 Icon = "rbxassetid://",
 PremiumOnly = false
 })
@@ -47,6 +48,14 @@ local T5 = Window:MakeTab({
 Name = "Misc",
 Icon = "rbxassetid://",
 PremiumOnly = false
+})
+
+local S1 = T5:AddSection({
+Name = "Config"
+})
+
+local S2 = T5:AddSection({
+Name = "Misc"
 })
 
 local tbl_w = {}
@@ -78,6 +87,19 @@ _G._kill = Value
         for _,v in pairs(workspace.NPC:GetChildren()) do
           game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = v:GetAttribute("UID")}})
         end
+      end
+end    
+})
+
+T1:AddToggle({
+Name = "Immortal",
+Default = false,
+Callback = function(Value)
+_G._immortal = Value
+      while wait() do
+        if _G._immortal == false then break end
+        Player:SetAttribute("HP",1.8e308)
+	Player:SetAttribute("MaxHP",1.8e308)
       end
 end    
 })
@@ -218,6 +240,31 @@ _G._Egg = Value
       while wait() do
          if _G._Egg == false then break end
             game:GetService("ReplicatedStorage")["DrawPool"]["RD_" .. tostring(_G._W) .. "_PET" .. tostring(_G._TypeShit)]["DrawRE"]:FireServer(_G._O,false)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Infinity Damage",
+Default = false,
+Callback = function(Value)
+_G._inf = Value
+      while wait() do
+        if _G._inf == false then break end
+        Player:SetAttribute("DMG",1.8e308)
+	Player:SetAttribute("TotalPower",1.8e308)
+      end
+end    
+})
+
+S2:AddToggle({
+Name = "Auto Upgrade Mount",
+Default = false,
+Callback = function(Value)
+_G._um = Value
+      while wait() do
+        if _G._um == false then break end
+        game:GetService("ReplicatedStorage")["Remotes"]["MountUpgradeRE"]:FireServer(Player:GetAttribute("EquippedMount"))
       end
 end    
 })
