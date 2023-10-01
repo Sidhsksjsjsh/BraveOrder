@@ -94,14 +94,16 @@ end
 --game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = }})
 
 T1:AddToggle({
-Name = "Auto Instant Kill (test)",
+Name = "Instant Kill",
 Default = false,
 Callback = function(Value)
 _G._kill = Value
       while wait() do
         if _G._kill == false then break end
         for _,v in pairs(workspace.NPC:GetChildren()) do
+	if v.Name ~= "Athena_01" then
           game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = v:GetAttribute("UID")}})
+	end
         end
       end
 end    
