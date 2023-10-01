@@ -378,7 +378,7 @@ _G._tp_d = Value
       while wait() do
         if _G._tp_d == false then break end
 	for _,v in pairs(workspace.NPC:GetChildren()) do
-          if not v.Name:find("Athena_01") then
+          if not v.Name:find("Athena_01") or Player:DistanceFromCharacter(v["Athena_01"].ModelObj.Position) < 300 then
             OrionLib:Teleport(workspace.Art[Player:GetAttribute("World")].Scene.DungeonArea)
 	end
 	end
