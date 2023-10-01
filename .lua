@@ -4,6 +4,21 @@ local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = fa
 
 local workspace = game:GetService("Workspace")
 
+local FireUID = nil
+local mt = getrawmetatable(game);
+setreadonly(mt,false)
+local namecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+	local Method = getnamecallmethod()
+	local Args = {...}
+
+	if Method == 'FireServer' and self.Name == 'HitRE' then
+        FireUID = Args[1][1]["FireUID"]
+end
+	return namecall(self, ...) 
+end)
+
 local T1 = Window:MakeTab({
 Name = "Main",
 Icon = "rbxassetid://",
@@ -50,6 +65,22 @@ end
 function Filter(ow)
   return ow:gsub("_",""):gsub("0","")
 end
+
+--game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = }})
+
+T1:AddToggle({
+Name = "Auto Instant Kill (test)",
+Default = false,
+Callback = function(Value)
+_G._kill = Value
+      while wait() do
+        if _G._kill == false then break end
+        for _,v in pairs(workspace.NPC:GetChildren()) do
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = v:GetAttribute("UID")}})
+        end
+      end
+end    
+})
 
 T1:AddToggle({
 Name = "Auto Open Chest",
