@@ -5,6 +5,7 @@ local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = fa
 local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
 local number = 9e99
+local RunService = game:GetService("RunService")
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -58,6 +59,14 @@ Name = "Config"
 local S2 = T5:AddSection({
 Name = "Misc"
 })
+
+local T6 = Window:MakeTab({
+Name = "Attribute",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
+local Info = T6:AddParagraph("Your attributes","Loading Client..")
 
 local tbl_w = {}
 OrionLib:AddTable(workspace.Art,tbl_w)
@@ -354,3 +363,12 @@ _G._achievement = Value
       end
 end    
 })
+
+-- ("Your attributes","Loading Client..")
+-- Player:GetAttribute("EquippedMount")
+--[[
+]]
+
+RunService.RenderStepped:Connect(function()
+	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. "\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. "\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. "\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
+end)
