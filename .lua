@@ -4,6 +4,7 @@ local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = fa
 
 local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
+local number = 9e99
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -63,7 +64,7 @@ OrionLib:AddTable(workspace.Art,tbl_w)
 
 T1:AddDropdown({
 Name = "World",
-Default = "W_01",
+Default = Player:GetAttribute("World"),
 Options = tbl_w,
 Callback = function(Value)
 _G._W2 = Value
@@ -98,8 +99,8 @@ Callback = function(Value)
 _G._immortal = Value
       while wait() do
         if _G._immortal == false then break end
-        Player:SetAttribute("HP",1.8e308)
-	Player:SetAttribute("MaxHP",1.8e308)
+        Player:SetAttribute("HP",number)
+	Player:SetAttribute("MaxHP",number)
       end
 end    
 })
@@ -117,43 +118,25 @@ end
 })
 
 T1:AddToggle({
-Name = "Auto Claim Mission (1-10)",
+Name = "Auto Claim Mission",
 Default = false,
 Callback = function(Value)
 _G._Mission1 = Value
       while wait() do
         if _G._Mission1 == false then break end
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_1")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_2")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_3")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_4")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_5")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_6")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_7")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_8")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_9")
-          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_10")
+          game:GetService("ReplicatedStorage")["Remotes"]["MissionCompleteRE"]:FireServer(Player:GetAttribute("CurMainMissionId"))
       end
 end    
 })
 
 T1:AddToggle({
-Name = "Auto Get Mission (1-10)",
+Name = "Auto Get Mission",
 Default = false,
 Callback = function(Value)
 _G._Mission2 = Value
       while wait() do
         if _G._Mission2 == false then break end
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_1")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_2")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_3")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_4")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_5")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_6")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_7")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_8")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_9")
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer("MISSION_" .. tostring(Filter(_G._MissionWorld)) .. "_10")
+          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer(Player:GetAttribute("CurMainMissionId"))
       end
 end    
 })
@@ -248,13 +231,104 @@ S1:AddToggle({
 Name = "Infinity Damage",
 Default = false,
 Callback = function(Value)
-_G._inf = Value
+_G._infdmg = Value
       while wait() do
-        if _G._inf == false then break end
-        Player:SetAttribute("DMG",1.8e308)
-	Player:SetAttribute("TotalPower",1.8e308)
+        if _G._infdmg == false then break end
+        Player:SetAttribute("DMG",number)
+	Player:SetAttribute("TotalPower",number)
       end
 end    
+})
+
+S1:AddToggle({
+Name = "Infinity Hit",
+Default = false,
+Callback = function(Value)
+_G._infhit = Value
+      while wait() do
+        if _G._infhit == false then break end
+        Player:SetAttribute("BHitR",number)
+	Player:SetAttribute("HitR",number)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Infinity Level",
+Default = false,
+Callback = function(Value)
+_G._inflvl = Value
+      while wait() do
+        if _G._inflvl == false then break end
+        Player:SetAttribute("CurLevel",number)
+	--Player:SetAttribute("HitR",number)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Infinity/No Cooldown",
+Default = false,
+Callback = function(Value)
+_G._infcd = Value
+      while wait() do
+        if _G._infcd == false then break end
+        Player:SetAttribute("MFireCD",-number)
+	Player:SetAttribute("PFireCD",-number)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Infinity Length",
+Default = false,
+Callback = function(Value)
+_G._inflength = Value
+      while wait() do
+        if _G._inflength == false then break end
+        Player:SetAttribute("BLength",number)
+	--Player:SetAttribute("HitR",number)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Infinity Friends Boost",
+Default = false,
+Callback = function(Value)
+_G._infboost = Value
+      while wait() do
+        if _G._infboost == false then break end
+        Player:SetAttribute("Friends",number)
+	--Player:SetAttribute("HitR",number)
+      end
+end    
+})
+
+S1:AddToggle({
+Name = "Zone Cleared",
+Default = false,
+Callback = function(Value)
+_G._zone = Value
+      while wait() do
+        if _G._zone == false then break end
+        Player:SetAttribute("ZoneCleared",Value)
+	--Player:SetAttribute("HitR",number)
+      end
+end    
+})
+
+S1:AddSlider({
+   Name = "Speed",
+   Min = 0,
+   Max = Player:GetAttribute("BSpeed"),
+   Default = Player:GetAttribute("BSpeed"),
+   Color = Color3.fromRGB(255,255,255),
+   Increment = 1,
+   ValueName = "%",
+   Callback = function(Value)
+     Player:SetAttribute("BSpeed",Value)
+   end    
 })
 
 S2:AddToggle({
@@ -265,6 +339,18 @@ _G._um = Value
       while wait() do
         if _G._um == false then break end
         game:GetService("ReplicatedStorage")["Remotes"]["MountUpgradeRE"]:FireServer(Player:GetAttribute("EquippedMount"))
+      end
+end    
+})
+
+S2:AddToggle({
+Name = "Auto Claim Achievement",
+Default = false,
+Callback = function(Value)
+_G._achievement = Value
+      while wait() do
+        if _G._achievement == false then break end
+        game:GetService("ReplicatedStorage")["Remotes"]["AchievementCompleteAllRE"]:FireServer()
       end
 end    
 })
