@@ -66,6 +66,12 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
+local T7 = Window:MakeTab({
+Name = "Dungeon",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
 local Info = T6:AddParagraph("Your attributes","Loading Client..")
 
 local tbl_w = {}
@@ -360,6 +366,22 @@ _G._achievement = Value
       while wait() do
         if _G._achievement == false then break end
         game:GetService("ReplicatedStorage")["Remotes"]["AchievementCompleteAllRE"]:FireServer()
+      end
+end    
+})
+
+T7:AddToggle({
+Name = "Auto Dungeon",
+Default = false,
+Callback = function(Value)
+_G._tp_d = Value
+      while wait() do
+        if _G._tp_d == false then break end
+	for _,v in pairs(workspace.NPC:GetChildren()) do
+          if not v.Name:find("Athena_01") then
+            OrionLib:Teleport(workspace.Art[Player:GetAttribute("World")].Scene.DungeonArea)
+	end
+	end
       end
 end    
 })
