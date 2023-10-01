@@ -61,7 +61,7 @@ Name = "Misc"
 
 local tbl_w = {}
 OrionLib:AddTable(workspace.Art,tbl_w)
-
+--[[
 T1:AddDropdown({
 Name = "World",
 Default = Player:GetAttribute("World"),
@@ -71,7 +71,7 @@ _G._W2 = Value
 _G._MissionWorld = Value
 end    
 })
-
+]]
 function Filter(ow)
   return ow:gsub("_",""):gsub("0","")
 end
@@ -112,7 +112,7 @@ Callback = function(Value)
 _G._Chest = Value
       while wait() do
         if _G._Chest == false then break end
-          game:GetService("ReplicatedStorage")["Remotes"]["ChestDrawRE"]:FireServer({["ChestId"] = "CHEST_" .. tostring(_G._W2)})
+          game:GetService("ReplicatedStorage")["Remotes"]["ChestDrawRE"]:FireServer({["ChestId"] = "CHEST_" .. tostring(Player:GetAttribute("World"))})
       end
 end    
 })
@@ -130,7 +130,7 @@ end
 })
 
 T1:AddToggle({
-Name = "Auto Get Mission",
+Name = "Auto Open Mission",
 Default = false,
 Callback = function(Value)
 _G._Mission2 = Value
@@ -177,7 +177,7 @@ end
 })
 
 T4:AddToggle({
-Name = "Auto Up/Add Point",
+Name = "Auto Upgrade SkillPoint",
 Default = false,
 Callback = function(Value)
 _G._BestGun = Value
@@ -200,7 +200,7 @@ end
 T3:AddDropdown({
 Name = "World",
 Default = "W1",
-Options = {"W1","W2","W3","W4","W5","W6","W7","W8","W9","W10"},
+Options = {"W1","W2","W3","W4","W5","W6"},
 Callback = function(Value)
 _G._W = Value
 end    
@@ -222,7 +222,7 @@ Callback = function(Value)
 _G._Egg = Value
       while wait() do
          if _G._Egg == false then break end
-            game:GetService("ReplicatedStorage")["DrawPool"]["RD_" .. tostring(_G._W) .. "_PET" .. tostring(_G._TypeShit)]["DrawRE"]:FireServer(_G._O,false)
+            game:GetService("ReplicatedStorage")["DrawPool"]["RD_" .. tostring(_G._W) .. "_PET" .. tostring(_G._TypeShit)]["DrawRE"]:FireServer(tonumber(_G._O),false)
       end
 end    
 })
