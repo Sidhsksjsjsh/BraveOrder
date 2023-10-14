@@ -92,6 +92,20 @@ function Filter(ow)
 end
 
 --game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = }})
+local TypicalNumber = 1
+
+if Player.Name == "Rivanda_Cheater" then --on tested
+T1:AddTextbox({
+  Name = "Select Hit Amount",
+  Default = "10",
+  TextDisappear = false,
+  Callback = function(Value)
+     TypicalNumber = Value
+  end  
+})
+else
+TypicalNumber = 1
+end
 
 T1:AddToggle({
 Name = "Instant Kill",
@@ -102,12 +116,62 @@ _G._kill = Value
         if _G._kill == false then break end
         for _,v in pairs(workspace.NPC:GetChildren()) do
 	if v.Name ~= "Athena_01" then
-          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = v:GetAttribute("UID")}})
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
 	end
         end
       end
 end    
 })
+
+if Player.Name == "Rivanda_Cheater" then --on tested
+T1:AddToggle({
+Name = "Instant Kill V1",
+Default = false,
+Callback = function(Value)
+_G._kill = Value
+      while wait() do
+        if _G._kill == false then break end
+        for _,v in pairs(workspace.NPC:GetChildren()) do
+	if v.Name ~= "Athena_01" then
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
+	end
+        end
+      end
+end    
+})
+
+T1:AddToggle({
+Name = "Instant Kill V2",
+Default = false,
+Callback = function(Value)
+_G._kill = Value
+      while wait() do
+        if _G._kill == false then break end
+        for _,v in pairs(workspace.NPC:GetChildren()) do
+	if v.Name ~= "Athena_01" then
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
+	end
+        end
+      end
+end    
+})
+
+T1:AddToggle({
+Name = "Instant Kill V3",
+Default = false,
+Callback = function(Value)
+_G._kill = Value
+      while wait() do
+        if _G._kill == false then break end
+        for _,v in pairs(workspace.NPC:GetChildren()) do
+	if v.Name ~= "Athena_01" then
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
+	end
+        end
+      end
+end    
+})
+end
 
 T1:AddToggle({
 Name = "Immortal",
