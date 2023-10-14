@@ -392,6 +392,13 @@ _G._um = Value
 end    
 })
 
+T4:AddButton({
+Name = "Fusion Equipped Gun",
+Callback = function()
+      game:GetService("ReplicatedStorage")["Remotes"]["CombinePetRE"]:FireServer({{Player:GetAttribute("Weapon"),Player:GetAttribute("Weapon"),Player:GetAttribute("Weapon")}})		
+  end    
+})
+
 T1:AddToggle({
 Name = "Auto Claim Achievement",
 Default = false,
@@ -459,5 +466,5 @@ end
 ]]
 
 RunService.RenderStepped:Connect(function()
-	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. "\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. "\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. "\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
+	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. "\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. "\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. "\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nHighest Wave:" .. tostring(Player:GetAttribute("DungeonRecord")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
 end)
