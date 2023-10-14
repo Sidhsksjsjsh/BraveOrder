@@ -52,12 +52,12 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
-local S1 = T5:AddSection({
-Name = "Config"
-})
-
 local S2 = T5:AddSection({
 Name = "Misc"
+})
+
+local S1 = T5:AddSection({
+Name = "Config"
 })
 
 local T6 = Window:MakeTab({
@@ -116,8 +116,8 @@ Callback = function(Value)
 _G._immortal = Value
       while wait() do
         if _G._immortal == false then break end
-        Player:SetAttribute("HP",number)
-	Player:SetAttribute("MaxHP",number)
+        Player:SetAttribute("HP",Player:GetAttribute("MaxHP"))
+	--Player:SetAttribute("MaxHP",number)
       end
 end    
 })
