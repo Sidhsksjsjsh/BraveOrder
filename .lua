@@ -208,12 +208,12 @@ end
 T3:AddDropdown({
 Name = "Egg Type",
 Default = "NORMAL",
-Options = {"NORMAL","ADVANCE"},
+Options = {"Normal","Advance"},
 Callback = function(Value)
 _G._TypeShit = Value
 end    
 })
-
+--[[
 T3:AddDropdown({
 Name = "World",
 Default = "W1",
@@ -222,7 +222,7 @@ Callback = function(Value)
 _G._W = Value
 end    
 })
-
+]]
 T3:AddDropdown({
 Name = "Total Hatch",
 Default = "1",
@@ -239,7 +239,7 @@ Callback = function(Value)
 _G._Egg = Value
       while wait() do
          if _G._Egg == false then break end
-            game:GetService("ReplicatedStorage")["DrawPool"]["RD_" .. tostring(_G._W) .. "_PET" .. tostring(_G._TypeShit)]["DrawRE"]:FireServer(tonumber(_G._O),false)
+            game:GetService("ReplicatedStorage")["DrawPool"]["RD_" .. tostring(Filter(Player:GetAttribute("World"))) .. "_PET" .. tostring(string.upper(_G._TypeShit))]["DrawRE"]:FireServer(tonumber(_G._O),false)
       end
 end    
 })
@@ -348,7 +348,7 @@ S1:AddSlider({
    end    
 })
 
-S2:AddToggle({
+T4:AddToggle({
 Name = "Auto Upgrade Mount",
 Default = false,
 Callback = function(Value)
@@ -360,7 +360,7 @@ _G._um = Value
 end    
 })
 
-S2:AddToggle({
+T1:AddToggle({
 Name = "Auto Claim Achievement",
 Default = false,
 Callback = function(Value)
