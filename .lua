@@ -6,7 +6,7 @@ local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
 local number = 9e99
 local RunService = game:GetService("RunService")
-local dev = "Rivanda_Cheater"
+--local dev = "Rivanda_Cheater"
 
 local FireUID = nil
 local mt = getrawmetatable(game);
