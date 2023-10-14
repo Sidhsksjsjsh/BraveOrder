@@ -6,7 +6,7 @@ local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
 local number = 9e99
 local RunService = game:GetService("RunService")
---local dev = "Rivanda_Cheater"
+local dev = "Rivanda_Cheater"
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -420,7 +420,7 @@ _G._tp_d = Value
 end    
 })
 
-if Player.Name == "Rivanda_Cheater" then
+if Player.Name == dev then
 local T8 = Window:MakeTab({
 Name = "Shop Function",
 Icon = "rbxassetid://",
@@ -430,7 +430,7 @@ PremiumOnly = false
 T8:AddDropdown({
   Name = "Select Coin",
   Default = "RS_Coin1",
-  Options = {"RS_Coin1","RS_Coin2","RS_Coin3""RS_Coin4","RS_Coin5","RS_Coin6"},
+  Options = {"RS_Coin1","RS_Coin2","RS_Coin3","RS_Coin4","RS_Coin5","RS_Coin6"},
   Callback = function(Value)
      _G._CoinTool = Value
   end    
