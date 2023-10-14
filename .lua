@@ -420,7 +420,7 @@ _G._tp_d = Value
 end    
 })
 
-if Player.Name == dev then
+if Player.Name == "Rivanda_Cheater" then
 local T8 = Window:MakeTab({
 Name = "Shop Function",
 Icon = "rbxassetid://",
