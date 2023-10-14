@@ -6,6 +6,7 @@ local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
 local number = 9e99
 local RunService = game:GetService("RunService")
+local dev = "Rivanda_Cheater"
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -94,7 +95,7 @@ end
 --game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1,["UID"] = }})
 local TypicalNumber = 1
 
-if Player.Name == "Rivanda_Cheater" then --on tested
+--[[if Player.Name == "Rivanda_Cheater" then --on tested
 T1:AddTextbox({
   Name = "Select Hit Amount",
   Default = "10",
@@ -106,9 +107,10 @@ T1:AddTextbox({
 else
 TypicalNumber = 1
 end
+]]
 
 T1:AddToggle({
-Name = "Instant Kill",
+Name = "Instant Kill V1 (Recommended)",
 Default = false,
 Callback = function(Value)
 _G._kill = Value
@@ -123,9 +125,8 @@ _G._kill = Value
 end    
 })
 
-if Player.Name == "Rivanda_Cheater" then --on tested
 T1:AddToggle({
-Name = "Instant Kill V1",
+Name = "Instant Kill V2 (Lagging)",
 Default = false,
 Callback = function(Value)
 _G._kill1 = Value
@@ -139,39 +140,6 @@ _G._kill1 = Value
       end
 end    
 })
-
-T1:AddToggle({
-Name = "Instant Kill V2",
-Default = false,
-Callback = function(Value)
-_G._kill2 = Value
-      while wait() do
-        if _G._kill2 == false then break end
-        for _,v in pairs(workspace.NPC:GetChildren()) do
-	if v.Name ~= "Athena_01" then
-          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
-	end
-        end
-      end
-end    
-})
-
-T1:AddToggle({
-Name = "Instant Kill V3",
-Default = false,
-Callback = function(Value)
-_G._kill3 = Value
-      while wait() do
-        if _G._kill3 == false then break end
-        for _,v in pairs(workspace.NPC:GetChildren()) do
-	if v.Name ~= "Athena_01" then
-          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}},{{["FireUID"] = FireUID,["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = tonumber(TypicalNumber),["UID"] = v:GetAttribute("UID")}})
-	end
-        end
-      end
-end    
-})
-end
 
 T1:AddToggle({
 Name = "Immortal",
@@ -451,6 +419,39 @@ _G._tp_d = Value
       end
 end    
 })
+
+if Player.Name == dev then
+local T8 = Window:MakeTab({
+Name = "Shop Function",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
+T8:AddDropdown({
+  Name = "Select Coin",
+  Default = "RS_Coin1",
+  Options = {"RS_Coin1","RS_Coin2","RS_Coin3""RS_Coin4","RS_Coin5","RS_Coin6"},
+  Callback = function(Value)
+     _G._CoinTool = Value
+  end    
+})
+
+T8:AddTextbox({
+  Name = "Insert Amount",
+  Default = "1",
+  TextDisappear = false,
+  Callback = function(Value)
+     _G._ToolCrack = Value
+  end  
+})
+
+T8:AddButton({
+Name = "Add Silver",
+Callback = function()
+      game:GetService("ReplicatedStorage")["Remotes"]["StoreBuyRF"]:InvokeServer("ResourceStore",_G._CoinTool,tonumber(_G._ToolCrack))
+  end    
+})
+end
 
 -- ("Your attributes","Loading Client..")
 -- Player:GetAttribute("EquippedMount")
