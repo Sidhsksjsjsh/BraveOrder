@@ -76,7 +76,10 @@ PremiumOnly = false
 local Info = T6:AddParagraph("Your attributes","Loading Client..")
 
 local tbl_w = {}
+local ability = {}
 OrionLib:AddTable(workspace.Art,tbl_w)
+OrionLib:AddTable(Player.Ability,ability)
+
 --[[
 T1:AddDropdown({
 Name = "World",
@@ -141,8 +144,8 @@ _G._kill1 = Value
 end    
 })
 
-T1:AddToggle({
-Name = "Immortal",
+--[[T1:AddToggle({
+Name = "Auto Enter Floor",
 Default = false,
 Callback = function(Value)
 _G._immortal = Value
@@ -152,7 +155,7 @@ _G._immortal = Value
 	--Player:SetAttribute("MaxHP",number)
       end
 end    
-})
+})]]
 
 T1:AddToggle({
 Name = "Auto Open Chest",
@@ -238,12 +241,12 @@ end
 })
 
 T3:AddDropdown({
-Name = "Egg Type",
-Default = "Normal",
-Options = {"Normal","Advance"},
-Callback = function(Value)
-_G._TypeShit = Value
-end    
+   Name = "Egg Type",
+   Default = "Normal",
+   Options = {"Normal","Advance"},
+   Callback = function(Value)
+     _G._TypeShit = Value
+  end    
 })
 --[[
 T3:AddDropdown({
@@ -367,18 +370,15 @@ _G._zone = Value
 end    
 })
 
-S1:AddSlider({
-   Name = "Speed",
-   Min = 0,
-   Max = Player:GetAttribute("BSpeed"),
-   Default = Player:GetAttribute("BSpeed"),
-   Color = Color3.fromRGB(255,255,255),
-   Increment = 1,
-   ValueName = "%",
+S1:AddDropdown({
+   Name = "Visual Ability Config",
+   Default = "Normal",
+   Options = ability,
    Callback = function(Value)
-     Player:SetAttribute("BSpeed",Value)
-   end    
+      Player.Ability[Value].Value = number
+  end    
 })
+
 
 T4:AddToggle({
 Name = "Auto Upgrade Mount",
