@@ -411,6 +411,18 @@ _G._achievement = Value
 end    
 })
 
+T1:AddToggle({
+Name = "Auto Claim Battlepass Reward",
+Default = false,
+Callback = function(Value)
+_G._BP_REWARD = Value
+      while wait() do
+        if _G._BP_REWARD == false then break end
+        game:GetService("ReplicatedStorage")["Remotes"]["BattlePassRF"]:InvokeServer("ClaimAward")
+      end
+end    
+})
+
 T7:AddToggle({
 Name = "Auto Dungeon",
 Default = false,
