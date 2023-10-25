@@ -493,5 +493,7 @@ RunService.RenderStepped:Connect(function()
 end)
 
 Player:GetAttributeChangedSignal("ZoneCleared"):Connect(function()
-	OrionLib:MakeNotification({Name = "Wave Notifier",Content = "Wave Cleared!",Image = "rbxassetid://13030062874",Time = 5})
+	if Player:GetAttribute("ZoneCleared") == true then
+		OrionLib:MakeNotification({Name = "Wave Notifier",Content = "Wave Cleared!",Image = "rbxassetid://13030062874",Time = 5})
+	end
 end)
