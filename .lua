@@ -25,31 +25,31 @@ end)
 
 local T1 = Window:MakeTab({
 Name = "Main",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13043177474",
 PremiumOnly = false
 })
 
 local T2 = Window:MakeTab({
 Name = "Pet and Gun",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13040495457",
 PremiumOnly = false
 })
 
 local T3 = Window:MakeTab({
 Name = "Egg",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13040495457",
 PremiumOnly = false
 })
 
 local T4 = Window:MakeTab({
 Name = "Upgrade",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13040495457",
 PremiumOnly = false
 })
 
 local T5 = Window:MakeTab({
 Name = "Misc",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13040495457",
 PremiumOnly = false
 })
 
@@ -63,13 +63,13 @@ Name = "Config"
 
 local T6 = Window:MakeTab({
 Name = "Attribute",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13040495457",
 PremiumOnly = false
 })
 
 local T7 = Window:MakeTab({
 Name = "Dungeon",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13030104160",
 PremiumOnly = false
 })
 
@@ -79,6 +79,12 @@ local tbl_w = {}
 local ability = {}
 OrionLib:AddTable(workspace.Art,tbl_w)
 OrionLib:AddTable(Player.Ability,ability)
+
+local function Children(a,v)
+for _,i in pairs(a:GetChildren()) do
+	v(i)
+end
+end
 
 --[[
 T1:AddDropdown({
@@ -182,13 +188,18 @@ end
 })
 
 T1:AddToggle({
-Name = "Auto Open Mission",
+Name = "Disable Enemy Bullet",
 Default = false,
 Callback = function(Value)
-_G._Mission2 = Value
+_G._Enemy_Bullet = Value
       while wait() do
-        if _G._Mission2 == false then break end
-          game:GetService("ReplicatedStorage")["Remotes"]["OpenMissionRE"]:FireServer(Player:GetAttribute("CurMainMissionId"))
+        if _G._Enemy_Bullet == false then break end
+          Children(workspace.NPCBullet,function(item)
+		item:Destroy()
+	end)
+	  Children(workspace.Bullet,function(index)
+		index:Destroy()
+	end)
       end
 end    
 })
@@ -442,7 +453,7 @@ end
 if Player.Name == dev then
 local T8 = Window:MakeTab({
 Name = "Shop Function",
-Icon = "rbxassetid://",
+Icon = "rbxassetid://13030104160",
 PremiumOnly = false
 })
 
