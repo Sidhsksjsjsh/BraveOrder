@@ -25,7 +25,7 @@ end)
 
 local T1 = Window:MakeTab({
 Name = "Main",
-Icon = "rbxassetid://13043177474",
+Icon = "rbxassetid://13030078632",
 PremiumOnly = false
 })
 
@@ -490,4 +490,8 @@ end
 
 RunService.RenderStepped:Connect(function()
 	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. "\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. "\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. "\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nHistorical Highest Wave:" .. tostring(Player:GetAttribute("DungeonRecord")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
+end)
+
+Player:GetAttributeChangedSignal("ZoneCleared"):Connect(function()
+	OrionLib:MakeNotification({Name = "Wave Notifier",Content = "Wave Cleared!",Image = "rbxassetid://13030062874",Time = 5})
 end)
