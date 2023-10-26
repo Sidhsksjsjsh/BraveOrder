@@ -119,10 +119,10 @@ end
 local function SafeArea()
 iPairs(workspace.NPC,function(npc)
 if humanoidRootPart then
-        local direction = humanoidRootPart.CFrame.lookVector
-        local targetPosition = humanoidRootPart.Position + (direction * distance)
-        npc.CFrame = CFrame.new(targetPosition)
-        end
+                local direction = (npc.Position - humanoidRootPart.Position).unit
+                local targetPosition = npc.Position - (direction * distance)
+                humanoidRootPart.CFrame = CFrame.new(targetPosition)
+            end
 end)
 end
 
@@ -294,7 +294,7 @@ end
 })
 
 T10:AddToggle({
-Name = "Bring Enemy",
+Name = "TP to Enemy",
 Default = false,
 Callback = function(Value)
 _G._Bring_Enemy = Value
