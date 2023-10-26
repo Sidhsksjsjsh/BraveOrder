@@ -457,7 +457,15 @@ Icon = "rbxassetid://13030104160",
 PremiumOnly = false
 })
 
-T8:AddDropdown({
+local Store = T8:AddSection({
+Name = "STORE"
+})
+
+local AthenaStore = T8:AddSection({
+Name = "ATHENA STORE"
+})
+
+Store:AddDropdown({
   Name = "Select Coin",
   Default = "RS_Coin1",
   Options = {"RS_Coin1","RS_Coin2","RS_Coin3","RS_Coin4","RS_Coin5","RS_Coin6"},
@@ -466,7 +474,7 @@ T8:AddDropdown({
   end    
 })
 
-T8:AddTextbox({
+Store:AddTextbox({
   Name = "Insert Amount",
   Default = "1",
   TextDisappear = false,
@@ -475,10 +483,68 @@ T8:AddTextbox({
   end  
 })
 
-T8:AddButton({
+Store:AddButton({
 Name = "Add Silver",
 Callback = function()
       game:GetService("ReplicatedStorage")["Remotes"]["StoreBuyRF"]:InvokeServer("ResourceStore",_G._CoinTool,tonumber(_G._ToolCrack))
+  end    
+})
+
+--[[
+1. Silver Boost (01)
+2. Major Silver Boost (02)
+3. EXP Boost (03)
+4. Major EXP Boost (04)
+5. HP Boost (05)
+6. Major HP Boost (06)
+7. AP Boost (07)
+8. Major AP Boost (08)
+]]
+
+AthenaStore:AddDropdown({
+  Name = "Select Item",
+  Default = "Silver Boost",
+  Options = {"Silver Boost","Major Silver Boost","EXP Boost","Major EXP Boost","HP Boost","Major HP Boost","AP Boost","Major AP Boost"},
+  Callback = function(Value)
+     _G._s_ItemTool = Value
+  end    
+})
+
+AthenaStore:AddSlider({
+   Name = "Slider",
+   Min = 1,
+   Max = 10,
+   Default = 1,
+   Color = Color3.fromRGB(255,255,255),
+   Increment = 1,
+   ValueName = "Item",
+   Callback = function(Value)
+     _G._s_Crack = Value
+  end  
+})
+	
+AthenaStore:AddButton({
+Name = "BUY",
+Callback = function()
+	if _G._s_ItemTool == "Silver Boost" then
+                game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS01",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "Major Silver Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS02",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "EXP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS03",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "Major EXP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS04",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "HP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS05",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "Major HP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS06",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "AP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS07",tonumber(_G._s_Crack))
+	elseif _G._s_ItemTool == "Major AP Boost" then
+		game:GetService("ReplicatedStorage")["Remotes"]["CheckStoreConditionRF"]:InvokeServer("AthenaStore","ITEM_PROPS08",tonumber(_G._s_Crack))
+	else
+		OrionLib:MakeNotification({Name = "ERROR",Content = "Invalid Item",Image = "rbxassetid://13030062874",Time = 5})
+	end
   end    
 })
 end
