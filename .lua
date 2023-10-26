@@ -87,9 +87,9 @@ end
 end
 
 local function fireTouch(a)
-firetouchinterest(a,Player.PrimaryPart,0)
+firetouchinterest(a,Player.Character.PrimaryPart,0)
 wait()
-firetouchinterest(a,Player.PrimaryPart,1)
+firetouchinterest(a,Player.Character.PrimaryPart,1)
 end
 
 --[[
@@ -518,7 +518,7 @@ AthenaStore:AddDropdown({
 
 AthenaStore:AddSlider({
    Name = "Insert Amount",
-   Min = 1,
+   Min = 0,
    Max = 10,
    Default = 1,
    Color = Color3.fromRGB(255,255,255),
@@ -564,7 +564,7 @@ PremiumOnly = false
 
 T9:AddDropdown({
   Name = "Select Stars",
-  Default = "AP",
+  Default = "★ 1",
   Options = {"★ 1","★ 2","★ 3","Dungeon"},
   Callback = function(Value)
      _G._Star_Amount = Value
@@ -594,19 +594,19 @@ end
 
 local function formattedNumber(n)
     if n >= 10^21 then
-        return string.format("%.1fSx", n / 10^21) -- Sextiliunan
+        return string.format("%.1fSx", n / 10^21)
     elseif n >= 10^18 then
-        return string.format("%.1fQt", n / 10^18) -- Kuintiliunan
+        return string.format("%.1fQt", n / 10^18)
     elseif n >= 10^15 then
-        return string.format("%.1fQ", n / 10^15)  -- Kuadriliunan
+        return string.format("%.1fQ", n / 10^15)
     elseif n >= 10^12 then
-        return string.format("%.1fT", n / 10^12)  -- Triliunan
+        return string.format("%.1fT", n / 10^12)
     elseif n >= 10^9 then
-        return string.format("%.1fB", n / 10^9)   -- Miliaran
+        return string.format("%.1fB", n / 10^9)
     elseif n >= 10^6 then
-        return string.format("%.1fM", n / 10^6)   -- Jutaan
+        return string.format("%.1fM", n / 10^6)
     elseif n >= 10^3 then
-        return string.format("%.1fK", n / 10^3)   -- Ribuan
+        return string.format("%.1fK", n / 10^3)
     else
         return tostring(n)
     end
