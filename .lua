@@ -120,8 +120,9 @@ local function SafeArea()
 iPairs(workspace.NPC,function(npc)
 if humanoidRootPart then
                 local direction = (npc.Position - humanoidRootPart.Position).unit
-                local targetPosition = npc.Position - (direction * distance)
-                humanoidRootPart.CFrame = CFrame.new(targetPosition)
+                local horizontalTarget = npc.Position - (direction * horizontalDistance)
+                local verticalTarget = Vector3.new(horizontalTarget.X, horizontalTarget.Y + verticalDistance, horizontalTarget.Z)
+                humanoidRootPart.CFrame = CFrame.new(verticalTarget)
             end
 end)
 end
