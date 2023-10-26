@@ -9,7 +9,7 @@ local RunService = game:GetService("RunService")
 local dev = "Rivanda_Cheater"
 local Char = Player.Character
 local humanoidRootPart = Char.HumanoidRootPart
-local distance = 10
+local distance = 100
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -227,6 +227,19 @@ _G._Mission1 = Value
 end    
 })
 
+T10:AddSlider({
+   Name = "Bring Distance",
+   Min = 0,
+   Max = 350,
+   Default = 100,
+   Color = Color3.fromRGB(255,255,255),
+   Increment = 1,
+   ValueName = "Distance",
+   Callback = function(Value)
+     distance = tonumber(Value)
+  end  
+})
+
 T10:AddToggle({
 Name = "Disable Enemy Bullet / Projectile",
 Default = false,
@@ -257,7 +270,7 @@ end
 })
 
 T10:AddToggle({
-Name = "Bring Enemy (distance : 10)",
+Name = "Bring Enemy",
 Default = false,
 Callback = function(Value)
 _G._Bring_Enemy = Value
