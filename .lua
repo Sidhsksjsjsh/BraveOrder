@@ -119,6 +119,13 @@ if humanoidRootPart then
 end)
 end
 
+local function ClearChildren()
+Children(workspace.NPC,function(x)
+	Children(x,function(c)
+	     c:Destroy()
+	end)
+end)
+end
 
 local function fireTouch(a)
 firetouchinterest(a,Player.Char.PrimaryPart,0)
@@ -527,7 +534,7 @@ _G._tp_d = Value
 end    
 })
 
-if Player.Name == dev then
+if Player.Name == dev then -- currently testing the feature in future updates
 local T8 = Window:MakeTab({
 Name = "Shop Function",
 Icon = "rbxassetid://13030104160",
@@ -566,17 +573,6 @@ Callback = function()
       game:GetService("ReplicatedStorage")["Remotes"]["StoreBuyRF"]:InvokeServer("ResourceStore",_G._CoinTool,tonumber(_G._ToolCrack))
   end    
 })
-
---[[
-1. Silver Boost (01)
-2. Major Silver Boost (02)
-3. EXP Boost (03)
-4. Major EXP Boost (04)
-5. HP Boost (05)
-6. Major HP Boost (06)
-7. AP Boost (07)
-8. Major AP Boost (08)
-]]
 
 AthenaStore:AddDropdown({
   Name = "Select Item",
@@ -624,9 +620,7 @@ Callback = function()
 	end
   end    
 })
-end
 
-if Player.Name == dev then
 local T9 = Window:MakeTab({
 Name = "Game Test",
 Icon = "rbxassetid://13030104160",
@@ -654,6 +648,18 @@ Callback = function()
 	elseif _G._Star_Amount == "Dungeon" then
 		fireTouch(workspace.Art["W_01"].Scene.DungeonArea)
 	end
+end    
+})
+
+T10:AddToggle({
+Name = "Auto Remove Enemy's Children - testing",
+Default = false,
+Callback = function(Value)
+_G._NO_KID = Value
+      while wait() do
+        if _G._NO_KID == false then break end
+        ClearChildren()
+      end
 end    
 })
 end
