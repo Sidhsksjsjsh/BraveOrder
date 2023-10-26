@@ -1,7 +1,13 @@
+--[[
+Hello! Im as the staff of this script, want to inform you (who view this repository) that you can fork this script and you can add as many features as you like.
+don't forget to DM me on discord for the godmode feature, I just want to add that feature to this script... (discord: tora4172)
+credit to fahri, chris, firman, kevin and farel
+]]
+
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = false, ConfigFolder = "TurtleFi"})
-
+-- FUCK ROBLOX
 local workspace = game:GetService("Workspace")
 local Player = game.Players.LocalPlayer
 local number = 9e99
@@ -83,6 +89,7 @@ PremiumOnly = false
 })
 
 local Info = T6:AddParagraph("Your attributes","Loading Client..")
+local DataError = T10:AddParagraph("Data Error #762","Sorry, Client data could not be loaded.")
 
 local tbl_w = {}
 local ability = {}
@@ -119,10 +126,20 @@ if humanoidRootPart then
 end)
 end
 
-local function ClearChildren()
+local function ClearChildren() -- testing freezing feature 😠🖕😫☠️
 Children(workspace.NPC,function(x)
 	Children(x,function(c)
+	if c == "MovePos" then
 	     c:Destroy()
+	end
+	end)
+end)
+end
+
+local function GetAllChildren()
+Children(workspace.NPC,function(x)
+	Children(x,function(c)
+		return c
 	end)
 end)
 end
@@ -652,7 +669,7 @@ end
 })
 
 T10:AddToggle({
-Name = "Auto Remove Enemy's Children - testing",
+Name = "Freezing V2 - testing",
 Default = false,
 Callback = function(Value)
 _G._NO_KID = Value
@@ -662,6 +679,12 @@ _G._NO_KID = Value
       end
 end    
 })
+
+T10:AddButton({
+Name = "Get All Children",
+Callback = function()
+DataError:Set(GetAllChildren(),"")
+end})
 end
 
 -- ("Your attributes","Loading Client..")
