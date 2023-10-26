@@ -7,6 +7,9 @@ local Player = game.Players.LocalPlayer
 local number = 9e99
 local RunService = game:GetService("RunService")
 local dev = "Rivanda_Cheater"
+local Char = Player.Character
+local humanoidRootPart = Char.HumanoidRootPart
+local distance = 10
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -73,6 +76,12 @@ Icon = "rbxassetid://13030104160",
 PremiumOnly = false
 })
 
+local T10 = Window:MakeTab({
+Name = "Enemy's Tab",
+Icon = "rbxassetid://13040482767",
+PremiumOnly = false
+})
+
 local Info = T6:AddParagraph("Your attributes","Loading Client..")
 
 local tbl_w = {}
@@ -86,10 +95,35 @@ for _,i in pairs(a:GetChildren()) do
 end
 end
 
+local function iPairs(a,v)
+for _,part in ipairs(a:GetChildren()) do
+    v(part)
+end
+end
+
+local function Freeze(vtg)
+iPairs(workspace.NPC,function(part)
+if part:IsA("BasePart") then
+	part.Anchored = vtg
+end
+end)
+end
+
+local function SafeArea()
+iPairs(workspace.NPC,function(npc)
+if humanoidRootPart then
+        local direction = humanoidRootPart.CFrame.lookVector
+        local targetPosition = humanoidRootPart.Position + (direction * distance)
+        npc:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+        end
+end)
+end
+
+
 local function fireTouch(a)
-firetouchinterest(a,Player.Character.PrimaryPart,0)
+firetouchinterest(a,Player.Char.PrimaryPart,0)
 wait()
-firetouchinterest(a,Player.Character.PrimaryPart,1)
+firetouchinterest(a,Player.Char.PrimaryPart,1)
 end
 
 --[[
@@ -193,7 +227,7 @@ _G._Mission1 = Value
 end    
 })
 
-T1:AddToggle({
+T10:AddToggle({
 Name = "Disable Enemy Bullet",
 Default = false,
 Callback = function(Value)
@@ -206,6 +240,26 @@ _G._Enemy_Bullet = Value
 	  Children(workspace.Bullet,function(index)
 		index:Destroy()
 	end)
+      end
+end    
+})
+
+T10:AddToggle({
+   Name = "Freeze Enemy",
+   Default = false,
+   Callback = function(Value)
+     Freeze(Value)
+  end    
+})
+
+T10:AddToggle({
+Name = "Bring Enemy (distance : 10)",
+Default = false,
+Callback = function(Value)
+_G._Bring_Enemy = Value
+      while wait() do
+         if _G._Bring_Enemy == false then break end
+            SafeArea()
       end
 end    
 })
