@@ -18,6 +18,7 @@ local humanoidRootPart = Char.HumanoidRootPart
 local distance = 100
 local horizontalDistance = 10
 local verticalDistance = 5
+local normalgrav = workspace.Gravity
 
 local FireUID = nil
 local mt = getrawmetatable(game);
@@ -254,18 +255,30 @@ _G._Mission1 = Value
 end    
 })
 
-T10:AddSlider({
-   Name = "Bring Distance",
-   Min = 0,
-   Max = 350,
-   Default = 100,
-   Color = Color3.fromRGB(255,255,255),
-   Increment = 1,
-   ValueName = "Distance",
-   Callback = function(Value)
+T10:AddTextbox({
+Name = "Teleport Distance",
+Default = "100",
+TextDisappear = true,
+Callback = function(Value)
      distance = tonumber(Value)
   end  
 })
+
+T10:AddTextbox({
+Name = "Horizontal Distance",
+Default = "10",
+TextDisappear = true,
+Callback = function(Value)
+horizontalDistance = tonumber(Value)
+end})
+
+T10:AddTextbox({
+Name = "Vertical Distance",
+Default = "5",
+TextDisappear = true,
+Callback = function(Value)
+verticalDistance = tonumber(Value)
+end})
 
 T10:AddToggle({
 Name = "Disable Enemy Bullet / Projectile",
@@ -301,6 +314,12 @@ Name = "TP to Enemy",
 Default = false,
 Callback = function(Value)
 _G._Bring_Enemy = Value
+if _G._Bring_Enemy == true then
+	workspace.Gravity = 0
+else
+	workspace.Gravity = normalgrav
+end
+
       while wait() do
          if _G._Bring_Enemy == false then break end
             SafeArea()
