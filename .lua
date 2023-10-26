@@ -86,6 +86,12 @@ for _,i in pairs(a:GetChildren()) do
 end
 end
 
+local function fireTouch(a)
+firetouchinterest(a,Player.PrimaryPart,0)
+wait()
+firetouchinterest(a,Player.PrimaryPart,1)
+end
+
 --[[
 T1:AddDropdown({
 Name = "World",
@@ -546,6 +552,38 @@ Callback = function()
 		OrionLib:MakeNotification({Name = "ERROR",Content = "Invalid Item",Image = "rbxassetid://13030062874",Time = 5})
 	end
   end    
+})
+end
+
+if Player.Name == dev then
+local T9 = Window:MakeTab({
+Name = "Game Test",
+Icon = "rbxassetid://13030104160",
+PremiumOnly = false
+})
+
+T9:AddDropdown({
+  Name = "Select Stars",
+  Default = "AP",
+  Options = {"★ 1","★ 2","★ 3","Dungeon"},
+  Callback = function(Value)
+     _G._Star_Amount = Value
+  end    
+})
+	
+T9:AddButton({
+Name = "Start Game",
+Callback = function()
+        if _G._Star_Amount == "★ 1" then
+		fireTouch(workspace.Art[Player:GetAttribute("World")].Scene.TeleportArea1)
+	elseif _G._Star_Amount == "★ 2" then
+		fireTouch(workspace.Art[Player:GetAttribute("World")].Scene.TeleportArea2)
+	elseif _G._Star_Amount == "★ 3" then
+		fireTouch(workspace.Art[Player:GetAttribute("World")].Scene.TeleportArea3)
+	elseif _G._Star_Amount == "Dungeon" then
+		fireTouch(workspace.Art["W_01"].Scene.DungeonArea)
+	end
+end    
 })
 end
 
