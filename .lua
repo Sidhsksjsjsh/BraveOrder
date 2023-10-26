@@ -554,8 +554,28 @@ end
 --[[
 ]]
 
+local function formattedNumber(n)
+    if n >= 10^21 then
+        return string.format("%.1fSx", n / 10^21) -- Sextiliunan
+    elseif n >= 10^18 then
+        return string.format("%.1fQt", n / 10^18) -- Kuintiliunan
+    elseif n >= 10^15 then
+        return string.format("%.1fQ", n / 10^15)  -- Kuadriliunan
+    elseif n >= 10^12 then
+        return string.format("%.1fT", n / 10^12)  -- Triliunan
+    elseif n >= 10^9 then
+        return string.format("%.1fB", n / 10^9)   -- Miliaran
+    elseif n >= 10^6 then
+        return string.format("%.1fM", n / 10^6)   -- Jutaan
+    elseif n >= 10^3 then
+        return string.format("%.1fK", n / 10^3)   -- Ribuan
+    else
+        return tostring(n)
+    end
+end
+
 RunService.RenderStepped:Connect(function()
-	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. "\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. "\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. "\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nHistorical Highest Wave:" .. tostring(Player:GetAttribute("DungeonRecord")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
+	Info:Set("Damage: " .. tostring(Player:GetAttribute("DMG")) .. " ( " .. tostring(formattedNumber(Player:GetAttribute("DMG"))) .. " )\nHP: " .. tostring(Player:GetAttribute("HP")) .. "/" .. tostring(Player:GetAttribute("MaxHP")) .. " ( " .. tostring(formattedNumber(Player:GetAttribute("HP"))) .. "/" .. tostring(formattedNumber(Player:GetAttribute("MaxHP"))) .. " )\nTotal Power: " .. tostring(Player:GetAttribute("TotalPower")) .. " ( " .. tostring(formattedNumber(Player:GetAttribute("TotalPower"))) .. " )\nMount ID: " .. tostring(Player:GetAttribute("EquippedMount")) .. "\nWave: " .. tostring(Player:GetAttribute("Wave")) .. "\nHistorical Highest Floor: " .. tostring(Player:GetAttribute("DungeonRecord")) .. "\nWeapon: " .. tostring(Player:GetAttribute("Weapon")) .. "\nWeapon type: " .. tostring(Player:GetAttribute("WeaponType")) .. "\nWorld: " .. tostring(Player:GetAttribute("World")) .. "\nBHitR: " .. tostring(Player:GetAttribute("BHitR")) .. "\nBLength: " .. tostring(Player:GetAttribute("BLength")) .. "\nBSpeed: " .. tostring(Player:GetAttribute("BSpeed")) .. "\nCurrent Level: " .. tostring(Player:GetAttribute("CurLevel")) .. "\nMission ID: " .. tostring(Player:GetAttribute("CurMainMissionId")) .. "\nFire UID: " .. tostring(Player:GetAttribute("Fire")) .. "\nFriend Boost: " .. tostring(Player:GetAttribute("Friends")) .. "\nHitR: " .. tostring(Player:GetAttribute("HitR")) .. "\nMFireCD: " .. tostring(Player:GetAttribute("MFireCD")) .. "\nPFireCD: " .. tostring(Player:GetAttribute("PFireCD")) .. "\nis zone cleared: " .. tostring(Player:GetAttribute("ZoneCleared")),"Your attributes")
 end)
 
 Player:GetAttributeChangedSignal("ZoneCleared"):Connect(function()
