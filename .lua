@@ -145,9 +145,9 @@ end)
 end
 
 local function fireTouch(a)
-firetouchinterest(a,Player.Char.PrimaryPart,0)
+firetouchinterest(a,Char.PrimaryPart,0)
 wait()
-firetouchinterest(a,Player.Char.PrimaryPart,1)
+firetouchinterest(a,Char.PrimaryPart,1)
 end
 
 --[[
