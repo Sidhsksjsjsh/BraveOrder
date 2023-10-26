@@ -511,7 +511,7 @@ AthenaStore:AddDropdown({
 })
 
 AthenaStore:AddSlider({
-   Name = "Slider",
+   Name = "Insert Amount",
    Min = 1,
    Max = 10,
    Default = 1,
