@@ -101,10 +101,10 @@ for _,part in ipairs(a:GetChildren()) do
 end
 end
 
-local function Freeze(vtg)
+local function Freeze()
 iPairs(workspace.NPC,function(part)
 if part:IsA("BasePart") then
-	part.Anchored = vtg
+	part.Anchored = true
 end
 end)
 end
@@ -114,7 +114,7 @@ iPairs(workspace.NPC,function(npc)
 if humanoidRootPart then
         local direction = humanoidRootPart.CFrame.lookVector
         local targetPosition = humanoidRootPart.Position + (direction * distance)
-        npc:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+        npc.CFrame = CFrame.new(targetPosition)
         end
 end)
 end
@@ -228,7 +228,7 @@ end
 })
 
 T10:AddToggle({
-Name = "Disable Enemy Bullet",
+Name = "Disable Enemy Bullet / Projectile",
 Default = false,
 Callback = function(Value)
 _G._Enemy_Bullet = Value
@@ -245,11 +245,15 @@ end
 })
 
 T10:AddToggle({
-   Name = "Freeze Enemy",
-   Default = false,
-   Callback = function(Value)
-     Freeze(Value)
-  end    
+Name = "Freeze Enemy",
+Default = false,
+Callback = function(Value)
+_G._Freeze_Enemy = Value
+      while wait() do
+         if _G._Freeze_Enemy == false then break end
+            Freeze()
+      end
+end    
 })
 
 T10:AddToggle({
