@@ -16,6 +16,8 @@ local dev = "Rivanda_Cheater"
 local Char = Player.Character
 local humanoidRootPart = Char.HumanoidRootPart
 local distance = 100
+local horizontalDistance = 10
+local verticalDistance = 5
 
 local FireUID = nil
 local mt = getrawmetatable(game);
