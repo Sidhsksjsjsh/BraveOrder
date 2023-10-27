@@ -19,6 +19,7 @@ local distance = 100
 local horizontalDistance = 10
 local verticalDistance = 5
 local normalgrav = workspace.Gravity
+local PathfindingService = game:GetService("PathfindingService")
 
 local FireUID = nil
 local mt = getrawmetatable(game);
