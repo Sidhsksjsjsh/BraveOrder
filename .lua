@@ -99,6 +99,28 @@ local ability = {}
 OrionLib:AddTable(workspace.Art,tbl_w)
 OrionLib:AddTable(Player.Ability,ability)
 
+local path = PathfindingService:CreatePath()
+
+local function ReadPath(targetPosition)
+path:ComputeAsync(Player.Character.HumanoidRootPart.Position,targetPosition)
+
+if path.Status == Enum.PathStatus.Success then
+print("Path found!")
+local waypoints = path:GetWaypoints()
+		local distance 
+		for waypointIndex, waypoint in pairs(waypoints) do
+			local waypointPosition = waypoint.Position
+			Player.Character.Humanoid:MoveTo(waypointPosition)
+			repeat 
+				distance = (waypointPosition - Player.Character.Humanoid.Parent.PrimaryPart.Position).magnitude
+			wait()
+			until distance <= 5
+	end
+    else
+           print("Failed to find path.")
+    end
+end
+
 local function Children(a,v)
 for _,i in pairs(a:GetChildren()) do
 	v(i)
@@ -149,9 +171,7 @@ end)
 end
 
 local function fireTouch(a)
-firetouchinterest(a,Char.PrimaryPart,0)
-wait()
-firetouchinterest(a,Char.PrimaryPart,1)
+ReadPath(a.Position)
 end
 
 --[[
