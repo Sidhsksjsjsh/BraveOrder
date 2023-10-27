@@ -434,6 +434,12 @@ _G._Egg = Value
 end    
 })
 
+S2:AddButton({
+Name = "Tora Script",
+Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/main/0BraveOrder'))()
+end})
+
 S1:AddToggle({
 Name = "Infinity Damage",
 Default = false,
