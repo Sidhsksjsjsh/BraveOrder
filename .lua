@@ -81,7 +81,7 @@ PremiumOnly = false
 })
 
 local T7 = Window:MakeTab({
-Name = "Dungeon",
+Name = "Proximity Prompt",
 Icon = "rbxassetid://13030104160",
 PremiumOnly = false
 })
@@ -131,6 +131,12 @@ end
 local function iPairs(a,v)
 for _,part in ipairs(a:GetChildren()) do
     v(part)
+end
+end
+
+local function Descendants(str,get)
+for _,v in pairs(str:GetDescendants()) do
+	get(v)
 end
 end
 
@@ -602,21 +608,18 @@ _G._BP_REWARD = Value
 end    
 })
 
-T7:AddToggle({
-Name = "Auto Dungeon",
-Default = false,
-Callback = function(Value)
-_G._tp_d = Value
-      while wait() do
-        if _G._tp_d == false then break end
-	for _,v in pairs(workspace.NPC:GetChildren()) do
-          if not v.Name:find("Athena_01") or Player:DistanceFromCharacter(v["Athena_01"].ModelObj.Position) < 300 then
-            OrionLib:Teleport(workspace.Art[Player:GetAttribute("World")].Scene.DungeonArea)
+T7:AddButton({
+Name = "Enter Event",
+Callback = function()
+Descendants(workspace,function(var)
+	if var:IsA("ProximityPrompt") then
+		fireproximityprompt(var)
 	end
-	end
-      end
+    end)
 end    
 })
+
+-- Descendants(str,get)
 
 if Player.Name == dev then -- currently testing the feature in future updates
 local T8 = Window:MakeTab({
