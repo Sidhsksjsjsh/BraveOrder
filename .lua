@@ -2,7 +2,7 @@
 Hello! Im as the staff of this script, want to inform you (who view this repository) that you can fork this script and you can add as many features as you like.
 don't forget to DM me on discord for the godmode feature, I just want to add that feature to this script... (discord: tora4172)
 credit to fahri, chris, firman, kevin and farel
-]]
+]] --7
 
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 
@@ -242,7 +242,7 @@ T1:AddTextbox({
 })
 
 T1:AddToggle({
-Name = "Instant Kill V2 (Lagging)",
+Name = "Instant Kill",
 Default = false,
 Callback = function(Value)
 _G._kill1 = Value
@@ -785,6 +785,6 @@ end)
 
 Player:GetAttributeChangedSignal("ZoneCleared"):Connect(function()
 	if Player:GetAttribute("ZoneCleared") == true then
-		OrionLib:MakeNotification({Name = "Wave Notifier",Content = "Wave Cleared!",Image = "rbxassetid://13030062874",Time = 5})
+		OrionLib:MakeNotification({Name = "Wave Notifier",Content = "Wave Cleared!",Image = "rbxassetid://13040492999",Time = 5})
 	end
 end)
