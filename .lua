@@ -229,7 +229,7 @@ _G._kill = Value
 end    
 })]]
 
-T1:AddTextbox({
+--[[T1:AddTextbox({
   Name = "hit Count (test)",
   Default = "1",
   TextDisappear = false,
@@ -245,7 +245,7 @@ T1:AddTextbox({
   Callback = function(Value)
      _G._Repeat_Index = Value -- 1
   end  
-})
+})]]
 
 T1:AddToggle({
 Name = "Instant Kill",
@@ -256,7 +256,16 @@ _G._kill1 = Value
         if _G._kill1 == false then break end
         for _,v in pairs(workspace.NPC:GetChildren()) do
 	if v.Name ~= "Athena_01" then
-          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = tonumber(_G._Repeat_Index),["HitCount"] = tonumber(_G._Hit_Amount),["UID"] = v:GetAttribute("UID")}})
+          game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
+	  game:GetService("ReplicatedStorage").Remotes.HitRE:FireServer({{["FireUID"] = Player:GetAttribute("Fire"),["FPName"] = "FirePos",["RepeatIndex"] = 1,["HitCount"] = 1000,["UID"] = v:GetAttribute("UID")}})
 	end
         end
       end
